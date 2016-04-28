@@ -7,24 +7,36 @@
 #ifndef A4_H_INCLUDED
 #define A4_H_INCLUDED
 
-#include <string>
-using std::string;
-#include <map>
-using std::map;
-#include <memory>
-using std::shared_ptr;
+#include <string> // for std::string
+#include <map> // for std::map
+#include <memory> // for std::shared_ptr
+
+class Level{
+public:
+    // Constructors
+    Level();
+    Level(const string & path);
+    // Accessor & Mutator Functions
+    std::string get_description
+    // Member Functions
+    std::shared_ptr<Level> move(std::string & choice);
+private:
+    std::string description_;
+    std::map<std::string, std::shared_ptr<Level>> options_;
+};
 
 class Action{
 public:
     // Constructors
-    Request();
-    
+    Action();
+    Action(Level & other_than_start);
     // Accessor & Mutator Functions
-    string get_choice() {return choice_;}
+    std::string get_choice() {return choice_;}
     // Member functions
     void turn();
 private:
-    string choice_;
+    std::string choice_;
+    std::shared_ptr<Level> current_;
 }; // END CLASS REQUEST
 
 class Handler{
@@ -32,7 +44,7 @@ public:
     Handler();
     virtual handle(Action & turn) = 0;
 protected:
-    shared_ptr<Handler> next_;
+    std::shared_ptr<Handler> next_;
 }; // END CLASS HANDLER
 
 
@@ -70,6 +82,13 @@ public:
     handle(Action & turn);
 private:
 }; // END CLASS SMELL_HANDLER
+
+class Lick_handler : public Handler{
+public:
+    Lick_handler();
+    handle(Action & turn);
+private:
+}; // END CLASS LICK_HANDLER
 
 
 #endif
