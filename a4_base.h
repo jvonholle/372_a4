@@ -2,7 +2,7 @@
 // CS 372
 // Spring 2016
 // Assignment 4 
-//     Chain of Responsibilty header for base classes
+//     Chain of Responsibilty header
 //     for a simple text-adventure
 #ifndef A4_BASE_H_INCLUDED
 #define A4_BASE_H_INCLUDED
@@ -20,19 +20,17 @@ public:
     Request();
     
     // Accessor & Mutator Functions
+    string get_choice() {return  choice_;}
+    // Member functions
+    void turn();
 private:
-    string 
+    string choice_;
 }; // END CLASS REQUEST
-
-class Move{
-    
-};
 
 class Handler{
 public:
-    virtual Handler() = 0;
+    Handler();
     virtual handle(Action & turn) = 0;
-    virtual handle(Move & scene) = 0;
 protected:
     shared_ptr<Handler> next_;
 }; // END CLASS HANDLER
