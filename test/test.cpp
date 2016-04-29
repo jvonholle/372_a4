@@ -4,6 +4,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "../src/a4.h"
+#include <string>
 
 TEST_CASE("Testing Levels"){
     Level test("test.map");
@@ -21,4 +22,18 @@ TEST_CASE("Testing Levels"){
         REQUIRE(test1.get_next()["back"] != nullptr);
     }
 
+}
+TEST_CASE("Testing Action"){
+    Level test_lev("test.map");
+    Level test_lev1("start.map");
+    Action test("test.map");
+    Action test1;
+    
+    SECTION("Checking current"){
+        REQUIRE(test.get_current()->get_description() == test_lev.get_description());
+        REQUIRE(test1.get_current()->get_description() == test_lev1.get_description());
+    }
+}
+TEST_CASE("Testing Handlers"){
+    
 }

@@ -10,43 +10,77 @@
 
 #include <string> // for std::string
 #include <map> // for std::map
-#include <memory> // for std::shared_ptr
+#include <memory> // for std::shared_ptr and std::make_shared
 
+// Class Level
+//   Deals with loading and display of current scenario
+//   Invariants:
+//       Map files cannot backtrack, program crashes as a result of ensuing loop 
+//   Used by Class Action
 class Level{
 public:
     // Constructors
+    
+    //Default Ctor
+    //  Calls one param ctor with "start.map"
+    //  used to start the game
     Level();
+    
+    //One param Ctor
+    //  Loads map at given path
+    //  Will close file and throw if file cannot be found, or is not formated correctly
+    //  Strong Guarantee
     Level(const std::string & path);
+    
     // Accessor & Mutator Functions
     std::string get_description();
     std::map<std::string, std::shared_ptr<Level>> get_next();
+    bool is_bad();
     // Member Functions
-    std::shared_ptr<Level> move(std::string & choice);
+    
+    // move
+    //   Takes a string, uses string as key in map next_
+    //   returns value stored there
+    std::shared_ptr<Level> move(const std::string & choice);
+    
+    // print
+    //   Takes and returns nothing
+    //   prints current description
     void print();
 private:
+
+    // description_
+    //   holds string loaded from map file, describes current level
     std::string description_;
+    
+    // next_
+    //   map of strings and pointers to new Levels
+    //   loaded from map file, it what can happen next
     std::map<std::string, std::shared_ptr<Level>> next_;
+    bool bad_end_ = false;
 };
+
 
 class Action{
 public:
     // Constructors
     Action();
-    Action(Level & other_than_start);
-    ~Action();
+    Action(const std::string & other_than_start);
     // Accessor & Mutator Functions
     std::string get_input();
+    std::shared_ptr<Level> get_current();
     // Member functions
     void prompt_player();
     void turn();
+    void move_up(const std::string & move_to);
 private:
     std::string input_;
-    Level * current_ = nullptr;
+    std::shared_ptr<Level> current_ = nullptr;
 }; // END CLASS REQUEST
 
 class Handler{
 public:
-    Handler();
+    virtual ~Handler() {}
     virtual bool handle(Action & turn) = 0;
 protected:
     std::shared_ptr<Handler> next_;

@@ -5,3 +5,15 @@
 // Assignemnt 4
 //      Main game loop / main function
 #include "a4.h"
+
+int main(){
+    Action game;
+    Move_handler do_it;
+    while(true){
+        game.turn();
+        if(!do_it.handle(game)){
+            break;
+        }
+    }
+    return 0;
+}
