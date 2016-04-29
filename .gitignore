@@ -1,3 +1,5 @@
 header.cpp
 *.swp
 *.o
+run_test
+play

@@ -34,6 +34,7 @@ Level::Level(const std::string & path){
         if(temp_input == "</Description>")
             break;
         description_ += temp_input;
+        description_ += " ";
         if(load.bad())
             throw std::runtime_error("invalid file syntax in " + w_path + " expected </Description> but file ended. ");
             

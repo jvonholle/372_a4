@@ -2,8 +2,8 @@
 This is the test level, you can move forward, back, left, or right. 3/4 end in death.
 </Description>
 <Next>
-forward dead.map
-back dead.map
+forward test.map
+back test.map
 left test1.map
 right dead.map
 </Next>
