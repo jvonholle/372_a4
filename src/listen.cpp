@@ -25,6 +25,20 @@ bool Listen_handler::handle(Action & turn){
     std::string pos;
     std::istringstream work_desc(turn.get_input());
     work_desc >> pos;
-    
-    return next_->handle(turn);
+
+    if(pos == "listen" || pos == "Listen"){
+        work_desc >> pos;
+        if(pos == "to")
+            work_desc >> pos;
+        for(auto & i : turn.get_current()->get_next()["<Listen>"]){
+            if(i.first == pos){
+                turn.move_up("<Listen>", pos);
+                return true;
+            }
+        }
+        work_desc >> pos;
+    }else{
+        return next_->handle(turn);
+    }
 }
+    

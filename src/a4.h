@@ -11,6 +11,8 @@
 #include <string> // for std::string
 #include <map> // for std::map
 #include <memory> // for std::shared_ptr and std::make_shared
+#include <fstream> // for std::ifstream
+#include <vector> // for std::vector
 
 // Class Level
 //   Deals with loading and display of current scenario
@@ -34,15 +36,15 @@ public:
     
     // Accessor & Mutator Functions
     std::string get_description();
-    std::map<std::string, std::shared_ptr<Level>> get_next();
+    std::map<std::string, std::map<std::string, std::shared_ptr<Level>>> get_next();
     bool is_bad();
     // Member Functions
     
     // move
     //   Takes a string, uses string as key in map next_
     //   returns value stored there
-    std::shared_ptr<Level> move(const std::string & choice);
-    
+    std::shared_ptr<Level> move(const std::string & tag, const std::string & choice);
+
     // print
     //   Takes and returns nothing
     //   prints current description
@@ -56,8 +58,24 @@ private:
     // next_
     //   map of strings and pointers to new Levels
     //   loaded from map file, it what can happen next
-    std::map<std::string, std::shared_ptr<Level>> next_;
+    std::map<std::string, std::map<std::string, std::shared_ptr<Level>>> next_;
+
+    // bad_end_
+    //   is true if level loaded is a bad end eg, the player dies
     bool bad_end_ = false;
+
+    // check_tag
+    //   takes an ifstream and a string
+    //   ifstream is map file being read in
+    //   strings in vector are tag in map file its looking for
+    //   has to be formatted as follows:
+    //      <TAG_NAME>
+    //   it will find the matching closing tag of
+    //      </TAG_NAME>
+    //   will close file and throw if file is incorrectly formated
+    //   Strong Guarantee
+    //   CURRENTLY NOT IN USE - IFSTREAMS ARE HARD
+    void check_tag(std::ifstream & load, const std::vector<std::string> & tags);
 };
 
 
@@ -69,10 +87,11 @@ public:
     // Accessor & Mutator Functions
     std::string get_input();
     std::shared_ptr<Level> get_current();
+    bool is_bad();
     // Member functions
     void prompt_player();
-    void turn();
-    void move_up(const std::string & move_to);
+    void turn(const bool & can_do = true);
+    void move_up(const std::string & tag, const std::string & move_to);
 private:
     std::string input_;
     std::shared_ptr<Level> current_ = nullptr;

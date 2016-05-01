@@ -25,6 +25,19 @@ bool Look_handler::handle(Action & turn){
     std::string pos;
     std::istringstream work_desc(turn.get_input());
     work_desc >> pos;
-    
-    return next_->handle(turn);
+
+    if(pos == "look" || pos == "inspect" || pos == "check" || pos == "Look" || pos == "Inspect" || pos == "Check"){
+        work_desc >> pos;
+        if(pos == "at")
+            work_desc >> pos;
+        for(auto & i : turn.get_current()->get_next()["<Look>"]){
+            if(i.first == pos){
+                turn.move_up("<Look>", pos);
+                return true;
+            }
+        }
+        work_desc >> pos;
+    }else{
+        return next_->handle(turn);
+    }
 }

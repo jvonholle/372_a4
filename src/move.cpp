@@ -10,6 +10,7 @@
 #include "a4.h"
 
 #include <sstream> // for std::istringstream
+#include <iostream> // for std::cout && std::endl
 
 // ****************
 // * CONSTRUCTORS *
@@ -32,9 +33,9 @@ bool Move_handler::handle(Action & turn){
             work_desc >> pos;
             if(pos == "towards" || pos == "to")
                 work_desc >> pos;
-            for(auto & i : turn.get_current()->get_next()){
+            for(auto & i : turn.get_current()->get_next()["<Move>"]){
                 if(i.first == pos){
-                    turn.move_up(pos);
+                    turn.move_up("<Move>", pos);
                     return true;
                 }
             }

@@ -7,12 +7,17 @@
 #include "a4.h"
 
 int main(){
+    bool go_on;
     Action game;
     Move_handler do_it;
-    while(true){
-        game.turn();
-        if(!do_it.handle(game)){
-            break;
+    game.turn();
+    while(!game.is_bad()){
+        go_on = do_it.handle(game);
+        if(go_on)
+            game.turn();
+        else{
+            game.turn(go_on);
+            game.turn();
         }
     }
     return 0;

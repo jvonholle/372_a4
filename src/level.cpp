@@ -15,10 +15,11 @@
 #include <memory> // for std::shared_ptr
 #include <iostream> // for std::cout
 #include <cstdlib> // for std::system
+#include <vector> // for std::vector
 
 // DEBUG INCLUDES
-    // using std::cout;
-    // using std::endl;
+     using std::cout;
+     using std::endl;
 // END DEBUG
 
 // ****************
@@ -28,6 +29,7 @@ Level::Level() : Level("start.map")
     {}
 
 Level::Level(const std::string & path){
+    std::vector<std::string> tags = {"<Move>", "<Look>", "<Listen>", "<Interact>", "<Lick>", "<Smell>"};
     std::string w_path = "boards/" + path;
     std::string temp_input;
     std::ifstream load(w_path.c_str());
@@ -59,7 +61,8 @@ Level::Level(const std::string & path){
         load.close();
         throw std::runtime_error("invalid file syntax in " + w_path + " expected <Next> got " + temp_input);
     }
-        
+       
+    std::string end_tag = "</"; 
     std::string temp_storage;
     while(true){
         load >> temp_input;
@@ -70,12 +73,31 @@ Level::Level(const std::string & path){
         }
         if(temp_input == "</Next>")
             break;
-        load >> temp_input;
-       if(temp_input == "</Next>"){
-             load.close();
-             throw std::runtime_error("invalid file syntax in " + w_path + " expected target file got " + temp_input);
-       }
-        next_[temp_storage] = std::make_shared<Level>(temp_input);
+        for(auto i : tags){
+            if(i == temp_input){
+                    end_tag = "</";
+                for(int j = 1; j < i.size(); ++j)
+                    end_tag += i[j];
+                while(true){
+                    load >> temp_input;
+                    if(temp_input == end_tag)
+                        break;
+                    temp_storage = temp_input;
+                    load >> temp_input;
+                    if(temp_input == "</Next>")
+                        throw std::runtime_error("invalid file syntax in " + w_path + " expected "+end_tag +" but got </Next>. ");
+                    if(load.bad()){
+                        throw std::runtime_error("invalid file syntax in " + w_path + " expected </Next> but file ended. ");
+                    }
+                    next_[i][temp_storage] = std::make_shared<Level>(temp_input);
+            }
+        }
+    } 
+    /*    try{
+            check_tag(load, tags);
+        }catch( ... ){
+             throw std::runtime_error("invalid file syntax in " + w_path + " while checking tags.");
+        }*/
         if(load.bad()){
              throw std::runtime_error("invalid file syntax in " + w_path + " expected </Next> but file ended. ");
         }
@@ -89,7 +111,7 @@ Level::Level(const std::string & path){
 std::string Level::get_description(){
     return description_;
 }
-std::map<std::string, std::shared_ptr<Level>> Level::get_next(){
+std::map<std::string, std::map<std::string, std::shared_ptr<Level>>> Level::get_next(){
     return next_;
 }
 
@@ -100,10 +122,43 @@ bool Level::is_bad(){
 // ********************
 // * MEMBER FUNCTIONS *
 // ********************
-std::shared_ptr<Level> Level::move(const std::string & choice){
-    return next_[choice];
+std::shared_ptr<Level> Level::move(const std::string & tag, const std::string & choice){
+    return next_[tag][choice];
 }
 
 void Level::print(){
     std::cout << description_ << std::endl;
+}
+
+void Level::check_tag(std::ifstream & load, const std::vector<std::string> & tag){
+    std::string end_tag = "</";
+    std::string temp_input;
+    std::string temp_storage;
+
+    load >> temp_input;
+
+    cout << temp_input << endl;
+
+    for(auto i : tag){
+        if(temp_input == "</Next>")
+            return;
+        if(i == temp_input){
+            for(int j = 1; j < i.size(); ++j)
+                end_tag += i[j];
+            while(true){
+                load >> temp_input;
+                temp_storage = temp_input;
+                load >> temp_input;
+                if(temp_input == end_tag)
+                    return;
+                if(temp_input == "</Next>")
+                    throw;
+                if(load.bad())
+                    throw;
+
+                next_[i][temp_storage] = std::make_shared<Level>(temp_input);
+            }
+        }
+    } 
+
 }

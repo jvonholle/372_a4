@@ -31,6 +31,10 @@ std::shared_ptr<Level> Action::get_current(){
     return current_;
 }
 
+bool Action::is_bad(){
+    return current_->is_bad();
+}
+
 // ********************
 // * MEMBER FUNCTIONS *
 // ********************
@@ -39,12 +43,22 @@ void Action::prompt_player(){
     std::getline(std::cin, input_);
 }
 
-void Action::turn(){
-    current_->print();
-    if(!current_->is_bad())
+void Action::turn(const bool & can_do){
+    if(can_do){
+        current_->print();
+        if(current_->is_bad()){
+            std::cout << "YOU DIED" << std::endl;
+            return;
+        }
         prompt_player();
+    }else{
+        std::cout << std::endl 
+                  << "I don't know how to " << input_ << std::endl
+                  << "***********************************" << std::endl
+                  << std::endl;
+    }
 }
 
-void Action::move_up(const std::string & move_to){
-    current_ = current_->move(move_to);
+void Action::move_up(const std::string & tag, const std::string & move_to){
+    current_ = current_->move(tag, move_to);
 }
