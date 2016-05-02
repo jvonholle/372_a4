@@ -14,11 +14,15 @@
 // ****************
 // * CONSTRUCTORS *
 // ****************
-Action::Action()
-    { current_ = std::make_shared<Level>(); }
+Action::Action(){
+    current_ = std::make_shared<Level>(); 
+    current_->load();
+}
 
-Action::Action(const std::string & other_than_start)
-    { current_ = std::make_shared<Level>(other_than_start); }
+Action::Action(const std::string & other_than_start){
+    current_ = std::make_shared<Level>(other_than_start);
+    current_->load();
+}
 
 // *******************
 // * A & M FUNCTIONS *
@@ -44,10 +48,22 @@ void Action::prompt_player(){
 }
 
 void Action::turn(const bool & can_do){
+    for(int i = 0; i < 100; ++i)
+        std::cout << std::endl;
     if(can_do){
         current_->print();
         if(current_->is_bad()){
-            std::cout << "YOU DIED" << std::endl;
+            std::cout << "▄██   ▄    ▄██████▄  ███    █▄       ████████▄   ▄█     ▄████████ ████████▄"   << std::endl
+                      << "███   ██▄ ███    ███ ███    ███      ███   ▀███ ███    ███    ███ ███   ▀███"  << std::endl
+                      << "███▄▄▄███ ███    ███ ███    ███      ███    ███ ███▌   ███    █▀  ███    ███"  << std::endl
+                      << "▀▀▀▀▀▀███ ███    ███ ███    ███      ███    ███ ███▌  ▄███▄▄▄     ███    ███"  << std::endl
+                      << "▄██   ███ ███    ███ ███    ███      ███    ███ ███▌ ▀▀███▀▀▀     ███    ███"  << std::endl
+                      << "███   ███ ███    ███ ███    ███      ███    ███ ███    ███    █▄  ███    ███"  << std::endl
+                      << "███   ███ ███    ███ ███    ███      ███   ▄███ ███    ███    ███ ███   ▄███"  << std::endl
+                      << " ▀█████▀   ▀██████▀  ████████▀       ████████▀  █▀     ██████████ ████████▀ "  << std::endl; // ascii art from http://www.patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+                                                                                                                      //  Looked into FIGlet, but didn't have time to compile for my system.
+                                                                             
+
             return;
         }
         prompt_player();
@@ -61,4 +77,5 @@ void Action::turn(const bool & can_do){
 
 void Action::move_up(const std::string & tag, const std::string & move_to){
     current_ = current_->move(tag, move_to);
+    current_->load();
 }

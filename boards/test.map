@@ -1,11 +1,28 @@
-<Description>
-This is the test level, you can move forward, back, left, or right. 3/4 end in death.
-</Description>
-<Next>
-<Move>
+    <Description>
+This is the test level, you can move forward, back, left, or right. You can also look up or back, interact with a torch
+that's on the ground, listen up, lick a frog, or smell left.
+    </Description>
+    <Next>
+        <Move>
 forward dead.map
 back dead.map
 left test1.map
 right dead.map
-</Move>
-</Next>
+        </Move>
+        <Look>
+up roof.map
+back dead.map
+        </Look>
+        <Listen>
+up test1.map
+        </Listen>
+        <Interact>
+torch roof.map
+        </Interact>
+        <Lick>
+frog dead.map
+        </Lick>
+        <Smell>
+left test.map
+        </Smell>
+    </Next>

@@ -17,21 +17,19 @@
 // Class Level
 //   Deals with loading and display of current scenario
 //   Invariants:
-//       Map files cannot backtrack, program crashes as a result of ensuing loop 
+//       none 
 //   Used by Class Action
 class Level{
 public:
     // Constructors
     
-    //Default Ctor
-    //  Calls one param ctor with "start.map"
-    //  used to start the game
+    // Default Ctor
+    //   Calls one param ctor with "start.map"
+    //   used to start the game
     Level();
     
-    //One param Ctor
-    //  Loads map at given path
-    //  Will close file and throw if file cannot be found, or is not formated correctly
-    //  Strong Guarantee
+    // One param Ctor
+    //   Stores given string in path_ to be loaded later
     Level(const std::string & path);
     
     // Accessor & Mutator Functions
@@ -39,6 +37,13 @@ public:
     std::map<std::string, std::map<std::string, std::shared_ptr<Level>>> get_next();
     bool is_bad();
     // Member Functions
+    
+    // load
+    //   Takes & returns nothing
+    //   loads file stored at path_
+    //   Will close file and throw if file cannot be found, or is not formated correctly
+    //   Strong Guarantee
+    void load();
     
     // move
     //   Takes a string, uses string as key in map next_
@@ -50,7 +55,9 @@ public:
     //   prints current description
     void print();
 private:
-
+    // path_
+    //   holds file path, so that not all levels can be loaded when actiaved, not at init
+    std::string path_;
     // description_
     //   holds string loaded from map file, describes current level
     std::string description_;
@@ -82,30 +89,79 @@ private:
 class Action{
 public:
     // Constructors
+    
+    // Default Ctor
+    //   Sets current level to start
+    //   used to start game fresh.
     Action();
+    
+    // One Param Ctor
+    //   Takes string
+    //   loads map at given string by calling one param Level ctor
     Action(const std::string & other_than_start);
+    
     // Accessor & Mutator Functions
     std::string get_input();
     std::shared_ptr<Level> get_current();
     bool is_bad();
     // Member functions
+    
+    // Prompt_player
+    //   Takes and returns nothing
+    //   Prints a message to the player, asking what they want to do,
+    //   then uses std::getline() to save input to member input_
     void prompt_player();
+    
+    // Turn
+    //   Takes a bool, based on if the last input was valid
+    //   determines if it prints a prompt or a "I don't know how to XXX" message
+    //   where XXX is invalid input from the player
     void turn(const bool & can_do = true);
+    
+    // Move_up
+    //   takes two strings
+    //     tag is the tag that the input corresponds to
+    //     move_to is the level to use next
     void move_up(const std::string & tag, const std::string & move_to);
 private:
+
+    // input_
+    //   stored input from player to handle with handler classes
     std::string input_;
+    
+    // current_
+    //   shared pointer to the currently loaded level
     std::shared_ptr<Level> current_ = nullptr;
 }; // END CLASS REQUEST
 
+
+// class Handler
+//   Base class for handlers, which handle specific inputs
+//   Invariants:
+//     none
 class Handler{
 public:
+    // Dtor
+    //   Virtual
     virtual ~Handler() {}
+    
+    // Handle
+    //   Takes action
+    //   returns bool
+    //   returns true if current handler matches input in action
+    //   returns next handler's handle if not
     virtual bool handle(Action & turn) = 0;
 protected:
+
+    // next_
+    //   Pointer to next handler
     std::shared_ptr<Handler> next_;
 }; // END CLASS HANDLER
 
-
+// Handler classes
+//   XX_handler
+//     deals with specific inputs from player
+//     last chain returns false if user input is invalid 
 class Move_handler : public Handler{
 public:
     Move_handler();
@@ -148,5 +204,8 @@ public:
 private:
 }; // END CLASS LICK_HANDLER
 
+// ***********************
+// * END HANDLER CLASSES *
+// ***********************
 
 #endif

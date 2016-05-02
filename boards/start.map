@@ -1,11 +1,33 @@
-<Description>
-This is the test level, you can move forward, back, left, or right. 3/4 end in death.
-</Description>
-<Next>
+    <Description>
+You awake to find yourself in a dark cave. You think you can smell fresh air, but can't tell from where.
+Durring your first cursory glance, you can hardly make anything out, but you see what might be a flashlight on the ground.
+Off in the distance you hear something that might be a creek gurgling, but you can't be sure. It's terribly dark in here.
+As your eyes ajust you can make out three paths ahead of you, behind you is nothing but a smooth wall. You can feel you think is
+a frog on your foot, as you notice your feet are bare.
+    </Description>
+
+    <Next>
 <Move>
-forward dead.map
-back dead.map
-left test1.map
-right dead.map
+    right one-zero.map
+    center two-zero.map
+    left three-zero.map
 </Move>
-</Next>
+<Look>
+    right zero-two.map
+    center zero-two.map
+    left zero-two.map
+    up zero-two.map
+</Look>
+<Listen>
+    creek zero-three.map
+</Listen>
+<Smell>
+    air zero-four.map
+</Smell>
+<Lick>
+    frog dead.map
+</Lick>
+<Interact>
+    flashlight zero-one.map
+</Interact>
+    </Next>

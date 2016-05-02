@@ -30,7 +30,7 @@ bool Interact_handler::handle(Action & turn){
         work_desc >> pos;
         if(pos == "up")
             work_desc >> pos;
-        for(auto & i : turn.get_current()->get_next()["Interact"]){
+        for(auto & i : turn.get_current()->get_next()["<Interact>"]){
             if(i.first == pos){
                 turn.move_up("<Interact>", pos);
                 return true;

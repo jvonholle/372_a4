@@ -14,7 +14,7 @@
 // * CONSTRUCTORS *
 // ****************
 Listen_handler::Listen_handler(){ 
-    std::shared_ptr<Handler> temp = std::make_shared<Lick_handler>();
+    std::shared_ptr<Handler> temp = std::make_shared<Smell_handler>();
     next_ = temp;
 }
 
@@ -28,7 +28,7 @@ bool Listen_handler::handle(Action & turn){
 
     if(pos == "listen" || pos == "Listen"){
         work_desc >> pos;
-        if(pos == "to")
+        if(pos == "to" || pos == "for")
             work_desc >> pos;
         for(auto & i : turn.get_current()->get_next()["<Listen>"]){
             if(i.first == pos){

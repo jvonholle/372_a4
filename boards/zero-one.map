@@ -1,0 +1,32 @@
+    <Description>
+It is a flashlight! You pick it up and check for batteries, still there, holding your breath you flick the switch.
+To your disbelief, it works. Using your newfound tool to glance around again, you can more clearly see the three paths ahead of you, above
+them there are several odd carvings. Looking down you see the brightly colored frog that hopped off your foot when you moved to get the flashlight.
+You're glad you didn't lick it. Again, you think you can hear a creek off in the distance, but you can't be sure. The scent of fresh air you caught
+a wiff of before is starting to dissipate.
+    </Description>
+
+    <Next>
+<Move>
+    right one-one.map
+    center two-one.map
+    left three-one.map
+</Move>
+<Look>
+    right zero-five.map
+    center zero-five.map
+    left zero-five.map
+    up zero-six.map
+</Look>
+<Listen>
+    creek zero-three-f.map
+</Listen>
+<Smell>
+    air zero-four-f.map
+</Smell>
+<Lick>
+</Lick>
+<Interact>
+    frog four-zero.map
+</Interact>
+    </Next>

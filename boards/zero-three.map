@@ -1,0 +1,30 @@
+    <Description>
+As you listen closer, you can definitly make out the sound of running water. It sounds like it's coming from the path on the right. You can 
+still feel something on your foot. And you think about the thing on the ground. It sure does look like a flashlight.
+    </Description>
+
+    <Next>
+<Move>
+    right one-zero.map
+    center two-zero.map
+    left three-zero.map
+</Move>
+<Look>
+    right zero-two.map
+    center zero-two.map
+    left zero-two.map
+    up zero-two.map
+</Look>
+<Listen>
+    creek zero-three.map
+</Listen>
+<Smell>
+    air zero-four.map
+</Smell>
+<Lick>
+    frog dead.map
+</Lick>
+<Interact>
+    flashlight zero-one.map
+</Interact>
+    </Next>

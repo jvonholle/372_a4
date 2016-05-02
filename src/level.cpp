@@ -27,10 +27,13 @@
 // ****************
 Level::Level() : Level("start.map")
     {}
+    
+Level::Level(const std::string & path)
+    { path_ = path; }
 
-Level::Level(const std::string & path){
+void Level::load(){
     std::vector<std::string> tags = {"<Move>", "<Look>", "<Listen>", "<Interact>", "<Lick>", "<Smell>"};
-    std::string w_path = "boards/" + path;
+    std::string w_path = "boards/" + path_;
     std::string temp_input;
     std::ifstream load(w_path.c_str());
     if(!load){
@@ -43,18 +46,22 @@ Level::Level(const std::string & path){
         load.close();
         throw std::runtime_error("invalid file syntax in " + w_path + " expected <Description> got " + temp_input);
     }
-                
+    int temp_count = 0;
     while(true){
         load >> temp_input;
         if(temp_input == "</Description>")
             break;
         description_ += temp_input;
         description_ += " ";
+        if(temp_count >= 20){
+            temp_count = 0;
+            description_+= "\n";
+        }
         if(load.bad()){
             load.close();
             throw std::runtime_error("invalid file syntax in " + w_path + " expected </Description> but file ended. ");
         }
-            
+        temp_count++;    
     }
     load >> temp_input;
     if(temp_input != "<Next>"){
