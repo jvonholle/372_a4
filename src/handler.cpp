@@ -48,9 +48,6 @@ bool Quit_handler::handle(Action & turn){
     work_desc >> pos;
     
     if(pos == "quit" || pos == "exit" || pos == "Quit" || pos == "Exit"){
-        for(int i = 0; i < 100; ++i)
-            std::cout << "\n";
-        std::cout << "Bye!" << std::endl;
         turn.end();
         return true;
     }else

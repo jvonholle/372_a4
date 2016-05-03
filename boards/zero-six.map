@@ -6,9 +6,9 @@ to the side and looks at you as it opens its wings to stretch. It looks hungry. 
 
     <Next>
 <Move>
-    right one-one-b.map
-    center two-one-b.map
-    left three-one-b.map
+    right one-one.map
+    center two-one.map
+    left three-one.map
 </Move>
 <Look>
     right dead.map
