@@ -1,6 +1,14 @@
     <Description>
-
+It sure is dark in here, you think that maybe you should go back and get the flashlight, but then again,
+the sound of running water is definitly getting louder. Maybe you should just press on. You stop for a moment to weigh your options.
     </Description>
 
     <Next>
+<Move>
+    forward one-three.map
+    back zero-zero.map
+</Move>
+<Listen>
+    creek one-two.map
+</Listen>
     </Next>
