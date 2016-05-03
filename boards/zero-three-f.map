@@ -1,5 +1,28 @@
-<Description>
-</Description>
+    <Description>
+As you listen closer, you can definitly make out the sound of running water. It sounds like it's coming from the path on the right. Looking around with your flashlight, you can see a brightly colored frog
+down by your feet, you're glad you didn't lick it.
+    </Description>
 
-<Next>
-</Next>
+    <Next>
+<Move>
+    right one-one.map
+    center two-one.map
+    left three-one.map
+</Move>
+<Look>
+    right zero-five.map
+    center zero-five.map
+    left zero-five.map
+    up zero-six.map
+</Look>
+<Listen>
+</Listen>
+<Smell>
+    air zero-four-f.map
+</Smell>
+<Lick>
+</Lick>
+<Interact>
+    frog four-zero.map
+</Interact>
+    </Next>

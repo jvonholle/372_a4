@@ -1,5 +1,28 @@
-<Description>
-</Description>
+    <Description>
+Taking a deep breath, you can definitly smell fresh air. It's hard to make out, but it seems to be coming from the left. Shining your flashlight around, you see a brightly colored frog,
+you're glad you didn't lick it.
+    </Description>
 
-<Next>
-</Next>
+    <Next>
+<Move>
+    right one-one.map
+    center two-one.map
+    left three-one.map
+</Move>
+<Look>
+    right zero-five.map
+    center zero-five.map
+    left zero-five.map
+    up zero-six.map
+</Look>
+<Listen>
+</Listen>
+<Smell>
+    air zero-four-f.map
+</Smell>
+<Lick>
+</Lick>
+<Interact>
+    frog four-zero.map
+</Interact>
+    </Next>

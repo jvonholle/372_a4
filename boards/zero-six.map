@@ -1,5 +1,30 @@
-<Description>
-</Description>
+    <Description>
+You turn your flashlight up to the ceiling, and instantly know you've made a grave mistake. Iluminated by your beam of light is a giant bat. For a split second you think about turning
+the light away as to not wake it up, but you can tell its already too late. It's massive eyes open in a sudden and violent manner, catching the light you've shown on it. It cocks its bear-sized head
+to the side and looks at you as it opens its wings to stretch. It looks hungry. You manage to keep your head and not panic, but any second now, you can tell, it will attack.
+    </Description>
 
-<Next>
-</Next>
+    <Next>
+<Move>
+    right one-one-b.map
+    center two-one-b.map
+    left three-one-b.map
+</Move>
+<Look>
+    right dead.map
+    center dead.map
+    left dead.map
+    up dead.map
+</Look>
+<Listen>
+    creek dead.map
+</Listen>
+<Smell>
+    air dead.map
+</Smell>
+<Lick>
+</Lick>
+<Interact>
+    frog dead.map
+</Interact>
+    </Next>

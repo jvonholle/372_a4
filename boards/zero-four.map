@@ -1,5 +1,29 @@
-<Description>
-</Description>
-
-<Next>
-</Next>
+    <Description>
+Taking a deep breath, you can definitly smell fresh air. It's hard to make out, but it seems to be coming from the left. You can still feel something on your foot.
+You think about the mysterious shape on the floor, it definitly seems like something useful.
+    </Description>
+    
+    <Next>
+<Move>
+    right one-zero.map
+    center two-zero.map
+    left three-zero.map
+</Move>
+<Look>
+    right zero-two.map
+    center zero-two.map
+    left zero-two.map
+    up zero-two.map
+</Look>
+<Listen>
+    creek zero-three.map
+</Listen>
+<Smell>
+</Smell>
+<Lick>
+    frog dead.map
+</Lick>
+<Interact>
+    flashlight zero-one.map
+</Interact>
+    </Next>

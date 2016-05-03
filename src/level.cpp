@@ -78,6 +78,10 @@ void Level::load(){
             bad_end_ = true;
             break;
         }
+        if(temp_input == "<End></End>"){
+            end_ = true;
+            break;
+        }
         if(temp_input == "</Next>")
             break;
         for(auto i : tags){
@@ -126,6 +130,14 @@ bool Level::is_bad(){
     return bad_end_;
 }
 
+bool Level::is_end(){
+    return end_;
+}
+
+void Level::set_end(bool b){
+    end_ = b;
+}
+
 // ********************
 // * MEMBER FUNCTIONS *
 // ********************
@@ -134,6 +146,9 @@ std::shared_ptr<Level> Level::move(const std::string & tag, const std::string & 
 }
 
 void Level::print(){
+    for(int i = 0; i < 20; ++i)
+        std::cout << "\n";
+    std::cout << endl;
     std::cout << description_ << std::endl;
 }
 

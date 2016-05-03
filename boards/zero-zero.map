@@ -1,0 +1,33 @@
+    <Description>
+You're back where you woke up, once again you think you can smell fresh air, but can't tell from where.
+You spot what you thought might have been a flashlight again on the ground, this time a little more clearly, it's now obvious that
+it is a flashlight. Off in the distance you hear something that might be a creek gurgling, but you can't be sure. It's terribly 
+dark in here. As your eyes ajust you can make out three paths ahead of you, behind you is nothing but a smooth wall. You can feel
+you think is a frog on your foot.
+    </Description>
+
+    <Next>
+<Move>
+    right one-zero.map
+    center two-zero.map
+    left three-zero.map
+</Move>
+<Look>
+    right zero-two.map
+    center zero-two.map
+    left zero-two.map
+    up zero-two.map
+</Look>
+<Listen>
+    creek zero-three.map
+</Listen>
+<Smell>
+    air zero-four.map
+</Smell>
+<Lick>
+    frog dead.map
+</Lick>
+<Interact>
+    flashlight zero-one.map
+</Interact>
+    </Next>

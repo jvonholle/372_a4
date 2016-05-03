@@ -1,5 +1,31 @@
-<Description>
-</Description>
+    <Description>
+Shining the light of your flashlight at the markings above the three hallways. Above the left one you see a detailed engraving of what looks like 
+a raven, sitting atop a skull, adorned with gold and other materials. Paning to the right, you see a carving of a wolf's head guarding the center path with teeth bared.
+Above the last corridor is a single rose, its petals shining in response to the light of your flashlight striking them, after the initial impressivness of the ruby petals wears off,
+you notice that the thorns on the stem of the rose are also highlighted with a red material. These highlights however are a much deeper, violent red. You can't tell why but they are
+deeply disturbing.
+    </Description>
 
-<Next>
-</Next>
+    <Next>
+<Move>
+    right one-one.map
+    center two-one.map
+    left three-one.map
+</Move>
+<Look>
+    right zero-five.map
+    center zero-five.map
+    left zero-five.map
+    up zero-six.map
+</Look>
+<Listen>
+    creek zero-three-f.map
+</Listen>
+<Smell>
+    air zero-four-f.map
+</Smell>
+<Lick>
+</Lick>
+<Interact>
+</Interact>
+    </Next>

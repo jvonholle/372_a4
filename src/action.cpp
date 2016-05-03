@@ -35,21 +35,23 @@ std::shared_ptr<Level> Action::get_current(){
     return current_;
 }
 
-bool Action::is_bad(){
-    return current_->is_bad();
+bool Action::is_end(){
+    return (current_->is_bad() || current_->is_end());
+}
+
+void Action::end(){
+    current_->set_end(true);
 }
 
 // ********************
 // * MEMBER FUNCTIONS *
 // ********************
 void Action::prompt_player(){
-    std::cout << "What do you do? \n> ";
+    std::cout << "_______________\nWhat do you do? \n> ";
     std::getline(std::cin, input_);
 }
 
 void Action::turn(const bool & can_do){
-    for(int i = 0; i < 100; ++i)
-        std::cout << std::endl;
     if(can_do){
         current_->print();
         if(current_->is_bad()){
@@ -65,6 +67,8 @@ void Action::turn(const bool & can_do){
                                                                              
 
             return;
+        }else if(current_->is_end()){
+            return;
         }
         prompt_player();
     }else{
@@ -72,6 +76,7 @@ void Action::turn(const bool & can_do){
                   << "I don't know how to " << input_ << std::endl
                   << "***********************************" << std::endl
                   << std::endl;
+        prompt_player();
     }
 }
 

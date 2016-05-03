@@ -35,7 +35,9 @@ public:
     // Accessor & Mutator Functions
     std::string get_description();
     std::map<std::string, std::map<std::string, std::shared_ptr<Level>>> get_next();
+    bool is_end();
     bool is_bad();
+    void set_end(bool b);
     // Member Functions
     
     // load
@@ -70,6 +72,9 @@ private:
     // bad_end_
     //   is true if level loaded is a bad end eg, the player dies
     bool bad_end_ = false;
+    // end_
+    //   is true if level loaded is end eg, player wins or end of demo
+    bool end_ = false;
 
     // check_tag
     //   takes an ifstream and a string
@@ -103,7 +108,8 @@ public:
     // Accessor & Mutator Functions
     std::string get_input();
     std::shared_ptr<Level> get_current();
-    bool is_bad();
+    bool is_end();
+    void end();
     // Member functions
     
     // Prompt_player
@@ -161,7 +167,21 @@ protected:
 // Handler classes
 //   XX_handler
 //     deals with specific inputs from player
-//     last chain returns false if user input is invalid 
+//     last chain returns false if user input is invalid
+//   All but Help & Quit handlers have their own source file
+//   Quit & Help are in handler.cpp
+class Help_handler : public Handler{
+public:
+    Help_handler();
+    bool handle(Action & turn);
+private:
+}; // END CLASS HELP_HANDLER
+class Quit_handler : public Handler{
+public:
+    Quit_handler();
+    bool handle(Action & turn);
+private:
+}; // END CLASS QUIT_HANDLER
 class Move_handler : public Handler{
 public:
     Move_handler();

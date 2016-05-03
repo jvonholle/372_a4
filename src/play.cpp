@@ -9,16 +9,10 @@
 int main(){
     bool go_on;
     Action game;
-    Move_handler do_it;
+    Help_handler do_it;
     game.turn();
-    while(!game.is_bad()){
-        go_on = do_it.handle(game);
-        if(go_on)
-            game.turn();
-        else{
-            game.turn(go_on);
-            game.turn();
-        }
+    while(!game.is_end()){
+        game.turn(do_it.handle(game));
     }
     return 0;
 }

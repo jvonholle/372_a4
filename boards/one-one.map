@@ -1,5 +1,13 @@
-<Description>
-</Description>
+    <Description>
+As you enter the passage, you soon notice vines growing on the ceiling. This strikes you as somewhat peculiar, but not anything worth more than a cursory glance. You also manage
+to step around some extremly slippery looking spots on the floor, as you notice it suddenly start to slope downwards.
+As you get deeper into the hall, the vines start to get thicker and more plentiful. In addition to the increase in plant life, you notice the sound of the creek you noticed 
+in the entry way also getting louder. As you round a corner you sudenly enter a large cavern, which to your supprise is lit by some kind of bioluminescent flower, growing off the vines
+that now cover the ceiling so entirely that it's impossible to tell if its even still stone. In the center of this impressive new area, is the creek you've been hearing, now clearly visisble
+in the dim blue light of the flowers. As you make your way around the corner and deeper into the room, a metal gate suddenly crashes down behind you, locking you in this room. As the seriousness
+of this entrapment dawns on you, a giant rose slowly lifts itself from the stream.
+    </Description>
 
-<Next>
-</Next>
+    <Next>
+<End></End>
+    </Next>
