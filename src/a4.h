@@ -176,12 +176,14 @@ public:
     bool handle(Action & turn);
 private:
 }; // END CLASS HELP_HANDLER
+
 class Quit_handler : public Handler{
 public:
     Quit_handler();
     bool handle(Action & turn);
 private:
 }; // END CLASS QUIT_HANDLER
+
 class Move_handler : public Handler{
 public:
     Move_handler();
